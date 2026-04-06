@@ -33,12 +33,12 @@ export function ResumeSection() {
             <motion.a
               href={publicUrl(PERSON.resumePath)}
               download="SaiKrishna_Badeti_Resume.pdf"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-[#080a0f] hover:bg-sky-400"
+              className="shine-hollow inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium text-sky-100"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Download size={18} />
-              Download Resume
+              <span className="nav-link-shine">Download Resume</span>
             </motion.a>
           </div>
           <div className="relative h-[min(70vh,640px)] w-full bg-[#080a0f]">

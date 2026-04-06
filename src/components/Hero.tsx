@@ -77,12 +77,12 @@ export function Hero() {
             <motion.a
               href={publicUrl(PERSON.resumePath)}
               download="SaiKrishna_Badeti_Resume.pdf"
-              className="inline-flex items-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-[#080a0f] shadow-lg shadow-sky-500/25 transition hover:bg-sky-400"
+              className="shine-hollow inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium text-sky-100"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Download size={18} strokeWidth={2.25} />
-              Download Resume
+              <span className="nav-link-shine">Download Resume</span>
             </motion.a>
             <motion.a
               href="#contact"

@@ -61,7 +61,7 @@ export function Navbar() {
                   href={l.href}
                   className={`rounded-lg px-2.5 py-1.5 text-xs transition-colors hover:bg-white/5 ${
                     shine
-                      ? 'font-medium hover:opacity-100'
+                      ? 'shine-hollow font-medium hover:opacity-100'
                       : 'text-zinc-400 hover:text-zinc-100'
                   }`}
                 >
@@ -104,7 +104,7 @@ export function Navbar() {
                       href={l.href}
                       className={`block rounded-lg px-3 py-2.5 text-sm hover:bg-white/5 ${
                         shine
-                          ? 'font-medium'
+                          ? 'shine-hollow font-medium'
                           : 'text-zinc-300 hover:text-white'
                       }`}
                       onClick={() => setOpen(false)}
