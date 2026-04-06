@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Download, FileText } from 'lucide-react'
 import { SectionHeading } from './SectionHeading'
 import { PERSON } from '../data/content'
+import { publicUrl } from '../utils/publicUrl'
 
 export function ResumeSection() {
   return (
@@ -30,7 +31,7 @@ export function ResumeSection() {
               </div>
             </div>
             <motion.a
-              href={PERSON.resumePath}
+              href={publicUrl(PERSON.resumePath)}
               download="SaiKrishna_Badeti_Resume.pdf"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-[#080a0f] hover:bg-sky-400"
               whileHover={{ scale: 1.02 }}
@@ -43,7 +44,7 @@ export function ResumeSection() {
           <div className="relative h-[min(70vh,640px)] w-full bg-[#080a0f]">
             <iframe
               title="Resume preview"
-              src={`${PERSON.resumePath}#view=FitH`}
+              src={`${publicUrl(PERSON.resumePath)}#view=FitH`}
               className="h-full w-full border-0"
             />
           </div>

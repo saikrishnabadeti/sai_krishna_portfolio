@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
 import { SectionHeading } from './SectionHeading'
 import { TOOLS } from '../data/content'
+import { publicUrl } from '../utils/publicUrl'
 
 export function Tools() {
   return (
@@ -34,7 +35,11 @@ export function Tools() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 p-2 ring-1 ring-white/10 transition group-hover:ring-sky-500/30">
                 {tool.icon ? (
                   <img
-                    src={tool.icon}
+                    src={
+                      /^https?:\/\//i.test(tool.icon)
+                        ? tool.icon
+                        : publicUrl(tool.icon)
+                    }
                     alt=""
                     className="h-8 w-8 object-contain"
                     width={32}

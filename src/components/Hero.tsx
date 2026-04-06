@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Download, Mail } from 'lucide-react'
 import { GitHubIcon, LinkedInIcon } from './SocialIcons'
 import { PERSON } from '../data/content'
+import { publicUrl } from '../utils/publicUrl'
 
 export function Hero() {
   return (
@@ -23,7 +24,7 @@ export function Hero() {
             />
             <div className="relative overflow-hidden rounded-3xl border border-sky-500/25 bg-[#12151f] p-1 shadow-xl shadow-sky-500/10">
               <img
-                src={PERSON.profileImage}
+                src={publicUrl(PERSON.profileImage)}
                 alt={PERSON.name}
                 className="h-56 w-56 rounded-[1.15rem] object-cover md:h-64 md:w-64"
                 width={256}
@@ -74,7 +75,7 @@ export function Hero() {
             transition={{ delay: 0.35, duration: 0.5 }}
           >
             <motion.a
-              href={PERSON.resumePath}
+              href={publicUrl(PERSON.resumePath)}
               download="SaiKrishna_Badeti_Resume.pdf"
               className="inline-flex items-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-[#080a0f] shadow-lg shadow-sky-500/25 transition hover:bg-sky-400"
               whileHover={{ scale: 1.02 }}
