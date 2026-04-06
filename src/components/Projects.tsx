@@ -1,8 +1,45 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Layers } from 'lucide-react'
 import { SectionHeading } from './SectionHeading'
 import { PROJECTS, type Project } from '../data/content'
+
+type ProjectFeatureTickerProps = {
+  features: string[]
+}
+
+function ProjectFeatureTicker({ features }: ProjectFeatureTickerProps) {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (!features.length) return
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % features.length)
+    }, 2600)
+    return () => clearInterval(id)
+  }, [features])
+
+  if (!features.length) return null
+
+  const current = features[index]
+
+  return (
+    <div className="inline-flex h-5 min-w-[7.5rem] max-w-[10rem] items-center justify-end text-[11px] font-medium text-amber-200/90">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={current}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="whitespace-nowrap text-right"
+        >
+          {current}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  )
+}
 
 export function Projects() {
   const [active, setActive] = useState<Project | null>(null)
@@ -32,8 +69,11 @@ export function Projects() {
               whileHover={{ y: -2 }}
               onClick={() => setActive(project)}
             >
-              <div className="mb-4 inline-flex rounded-lg bg-sky-500/10 p-2 text-sky-400">
-                <Layers size={22} />
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="inline-flex rounded-lg bg-sky-500/10 p-2 text-sky-400">
+                  <Layers size={22} />
+                </div>
+                <ProjectFeatureTicker features={project.features} />
               </div>
               <h3 className="text-xl font-semibold text-white">{project.title}</h3>
               <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-400">
