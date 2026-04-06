@@ -70,13 +70,13 @@ export function Navbar() {
       <AnimatePresence>
         {open ? (
           <motion.div
-            className="border-t border-white/10 bg-[#080a0f]/95 backdrop-blur-lg md:hidden"
+            className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#080a0f]/95 backdrop-blur-lg md:hidden [-webkit-overflow-scrolling:touch]"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <ul className="flex flex-col gap-1 px-4 py-3">
+            <ul className="flex flex-col gap-1 px-4 py-3 pb-5">
               {links.map((l) => (
                 <li key={l.href}>
                   <a
