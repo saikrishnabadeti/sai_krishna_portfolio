@@ -13,7 +13,15 @@ const links = [
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
   { href: '#resume', label: 'Resume' },
-]
+] as const
+
+/** Recruiter-focused sections — subtle animated shine in the nav */
+const SHINE_HREFS = new Set<string>([
+  '#highlights',
+  '#skills',
+  '#projects',
+  '#resume',
+])
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
@@ -45,16 +53,27 @@ export function Navbar() {
         </a>
 
         <ul className="hidden flex-wrap items-center justify-end gap-1 md:flex">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="rounded-lg px-2.5 py-1.5 text-xs text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-100"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const shine = SHINE_HREFS.has(l.href)
+            return (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className={`rounded-lg px-2.5 py-1.5 text-xs transition-colors hover:bg-white/5 ${
+                    shine
+                      ? 'font-medium hover:opacity-100'
+                      : 'text-zinc-400 hover:text-zinc-100'
+                  }`}
+                >
+                  {shine ? (
+                    <span className="nav-link-shine">{l.label}</span>
+                  ) : (
+                    l.label
+                  )}
+                </a>
+              </li>
+            )
+          })}
         </ul>
 
         <button
@@ -77,17 +96,28 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <ul className="flex flex-col gap-1 px-4 py-3 pb-5">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="block rounded-lg px-3 py-2.5 text-sm text-zinc-300 hover:bg-white/5 hover:text-white"
-                    onClick={() => setOpen(false)}
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
+              {links.map((l) => {
+                const shine = SHINE_HREFS.has(l.href)
+                return (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      className={`block rounded-lg px-3 py-2.5 text-sm hover:bg-white/5 ${
+                        shine
+                          ? 'font-medium'
+                          : 'text-zinc-300 hover:text-white'
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {shine ? (
+                        <span className="nav-link-shine">{l.label}</span>
+                      ) : (
+                        l.label
+                      )}
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           </motion.div>
         ) : null}
